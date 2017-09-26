@@ -28,6 +28,8 @@ public class PointCollector implements View.OnTouchListener{
         if(points.size() == 4) {
             if(listener != null) {
                 listener.pointsCollected(points);
+                points.clear();
+
             }
         }
 
