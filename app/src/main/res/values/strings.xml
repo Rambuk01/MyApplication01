@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">SingleNote</string>
+    <string name="type_your_input">Type your input...</string>
+    <string name="load_button">Load Button</string>
+    <string name="save_button">Save Button</string>
+    <string name="its_the_first_image_youll_see">Its the first image you\'ll see...</string>
+    <string name="touch_image">touchImage</string>
+    <string name="click_correct_points">Click the correct points in order to access SingleNote.</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">Ok</string>
+    <string name="create_passpoint_sequence">Create your Passpoint Sequence</string>
+    <string name="dialog_message_sequence">Touch four points on the image to store the passpoint sequence. Don\'t forget them</string>
+</resources>
