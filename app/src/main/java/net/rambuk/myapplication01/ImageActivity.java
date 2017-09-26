@@ -1,17 +1,22 @@
 package net.rambuk.myapplication01;
 
 import android.content.DialogInterface;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
-public class ImageActivity extends AppCompatActivity {
-    private static final String DEBUGTAG = "JWP";
+import java.util.List;
+
+public class ImageActivity extends AppCompatActivity implements PointCollecterListener {
+
+    private PointCollector pointCollector = new PointCollector();
+    public static final String DEBUGTAG = "JWP";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +28,7 @@ public class ImageActivity extends AppCompatActivity {
         setFullScreen();
         addTouchListener();
         showPromt();
+        pointCollector.setListener(this);
     }
 
     private void showPromt() {
@@ -43,20 +49,7 @@ public class ImageActivity extends AppCompatActivity {
 
     private void addTouchListener() {
         ImageView image = (ImageView) findViewById(R.id.touch_image);
-        image.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                // Coordinates...
-                float x = event.getX();
-                float y = event.getY();
-
-                String message = String.format("Coordinates: (%.2f, %.2f)", x, y);
-                Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
-                Log.d(DEBUGTAG, message);
-
-                return false;
-            }
-        });
+        image.setOnTouchListener(pointCollector);
     }
 
     public void setFullScreen() {
@@ -71,4 +64,8 @@ public class ImageActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void pointsCollected(List<Point> points) {
+        Log.d(DEBUGTAG, "Collected points: " + points.size());
+    }
 }
