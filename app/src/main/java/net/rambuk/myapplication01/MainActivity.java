@@ -34,11 +34,7 @@ public class MainActivity extends AppCompatActivity {
         if(fileSaved) {
             loadSavedFile();
         }
-
-
     }
-
-
 
     private void loadSavedFile() {
 

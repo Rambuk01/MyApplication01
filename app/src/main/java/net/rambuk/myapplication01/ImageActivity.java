@@ -14,6 +14,8 @@ import java.util.List;
 public class ImageActivity extends AppCompatActivity implements PointCollecterListener {
 
     private PointCollector pointCollector = new PointCollector();
+    private Database db = new Database(this);
+
     public static final String DEBUGTAG = "JWP";
 
 
@@ -21,9 +23,6 @@ public class ImageActivity extends AppCompatActivity implements PointCollecterLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image);
-
-
-
 
         setFullScreen();
         addTouchListener();
@@ -63,9 +62,17 @@ public class ImageActivity extends AppCompatActivity implements PointCollecterLi
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
     }
 
-
     @Override
     public void pointsCollected(List<Point> points) {
         Log.d(DEBUGTAG, "Collected points: " + points.size());
+        db.storePoints(points);
+        db.getPoints();
+
+
+        List<Point> list = db.getPoints();
+
+        for(Point point: list) {
+            Log.d(DEBUGTAG, String.format("Got point: (%d, %d)", point.x, point.y));
+        }
     }
 }
