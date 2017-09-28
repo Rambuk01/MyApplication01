@@ -56,6 +56,7 @@ public class Database extends SQLiteOpenHelper {
         }
         db.close();
     }
+
     public List<Point> getPoints() {
         List<Point> points = new ArrayList<Point>();
         SQLiteDatabase db = getReadableDatabase();

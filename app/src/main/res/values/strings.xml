@@ -10,4 +10,7 @@
     <string name="ok">Ok</string>
     <string name="create_passpoint_sequence">Create your Passpoint Sequence</string>
     <string name="dialog_message_sequence">Touch four points on the image to store the passpoint sequence. Don\'t forget them</string>
+    <string name="storing_data">Storing data</string>
+    <string name="saving_passpoints">Saving passpoints</string>
+    <string name="checking_passpoints">Checking passpoints...</string>
 </resources>
