@@ -17,7 +17,7 @@ import java.util.List;
 
 public class ImageActivity extends AppCompatActivity implements PointCollecterListener {
 
-    private static final int POINT_CLOSENESS = 40;
+    private static final int POINT_CLOSENESS = 80;
     public static final String PASSWORD_SET = "PASSWORD_SET";
     private PointCollector pointCollector = new PointCollector();
     private Database db = new Database(this);
@@ -29,12 +29,10 @@ public class ImageActivity extends AppCompatActivity implements PointCollecterLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image);
 
+
+
         onWindowFocusChanged(true);
         addTouchListener();
-        /*
-        SharedPreferences preferences = getPreferences(MODE_PRIVATE);
-        preferences.edit().remove(PASSWORD_SET).commit();
-        */
 
         SharedPreferences prefs = getPreferences(MODE_PRIVATE);
         Boolean passpointsSet = prefs.getBoolean(PASSWORD_SET, false);
@@ -45,6 +43,10 @@ public class ImageActivity extends AppCompatActivity implements PointCollecterLi
         pointCollector.setListener(this);
     }
 
+    public void passpointReset() {
+        SharedPreferences preferences = getPreferences(MODE_PRIVATE);
+        preferences.edit().remove(PASSWORD_SET).commit();
+    }
     private void showSetPasspointsPromt() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
