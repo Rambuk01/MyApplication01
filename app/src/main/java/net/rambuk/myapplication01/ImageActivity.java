@@ -30,9 +30,17 @@ public class ImageActivity extends AppCompatActivity implements PointCollecterLi
         setContentView(R.layout.activity_image);
 
 
-
         onWindowFocusChanged(true);
         addTouchListener();
+
+        Bundle extras = getIntent().getExtras();
+        if(extras != null) {
+            Boolean resetPasspoints = extras.getBoolean(MainActivity.RESET_PASSPOINTS);
+            if(resetPasspoints) {
+                // reset the passpoints here.
+                passpointReset();
+            }
+        }
 
         SharedPreferences prefs = getPreferences(MODE_PRIVATE);
         Boolean passpointsSet = prefs.getBoolean(PASSWORD_SET, false);

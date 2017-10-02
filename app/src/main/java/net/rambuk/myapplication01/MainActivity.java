@@ -1,6 +1,7 @@
 package net.rambuk.myapplication01;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -19,14 +20,13 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStreamReader;
 
-import static net.rambuk.myapplication01.ImageActivity.PASSWORD_SET;
-
 public class MainActivity extends AppCompatActivity {
     public static final String TEXTFILE = "notesquirrel.txt";
     public static final String FILESAVED = "FileSaved"; // Arbitrary String used as a key to save and retrieve a boolean value.
     private String toastSaveText = null;
     private String toastLoadText = null;
     private String errorToast = null;
+    public static final String RESET_PASSPOINTS = "ResetPasspoints";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +51,11 @@ public class MainActivity extends AppCompatActivity {
        switch (item.getItemId()) {
            case R.id.action_reset_passpoints:
                Toast.makeText(MainActivity.this, "Passpoints Reset...", Toast.LENGTH_LONG).show();
-               SharedPreferences preferences = getPreferences(MODE_PRIVATE);
-               preferences.edit().remove(PASSWORD_SET).commit();
+               Intent i = new Intent(MainActivity.this, ImageActivity.class);
+               // Need to send some data, to reset the passpoints. get preferences wont just work. Going to pass some data with the intent.
+               i.putExtra(RESET_PASSPOINTS, true); // Now i need to recieve this on the other end.
+
+               startActivity(i);
        }
         return super.onOptionsItemSelected(item);
     }
